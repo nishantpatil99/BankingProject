@@ -12,6 +12,8 @@ public class BaseClass {
 		WebDriver driver=new ChromeDriver();
 		
 		driver.get("https://demo.guru99.com/V1/index.php");
-
+ 
+		
+		
  }
 }
