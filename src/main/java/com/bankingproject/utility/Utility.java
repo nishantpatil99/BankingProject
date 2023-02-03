@@ -1,14 +1,20 @@
 package com.bankingproject.utility;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.bankingproject.base.BaseClass;
 
 public class Utility extends BaseClass {
@@ -40,6 +46,7 @@ public class Utility extends BaseClass {
 	 	}
 		
  	}
+	
  	
 	public Object getSingleCellDataFromExcel(int row, int cell,String sheetName) throws EncryptedDocumentException, IOException {
 			
@@ -52,6 +59,14 @@ public class Utility extends BaseClass {
 				data = sh.getRow(row).getCell(cell).getNumericCellValue();
 			return data;
 		}
-
+	
+	public String getscreeshot(String screenShotName) throws IOException {
+		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		String scpath = projectpath + "//screenshot//" +screenShotName+ ".jpeg";		
+		FileUtils.copyFile(screenshot, new File(scpath));
+		return scpath;
 	}
+	
+	
+}
 	
